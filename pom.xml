@@ -16,8 +16,8 @@
 
     <distributionManagement>
         <repository>
-            <id>github</id>
-            <url>https://maven.pkg.github.com/Reformed-Studios/ReformedCoreAPI</url>
+            <id>reformed-repo</id>
+            <url>https://repo.reformedstudios.eu/</url>
         </repository>
     </distributionManagement>
 

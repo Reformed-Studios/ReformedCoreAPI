@@ -16,8 +16,8 @@
                     <url>https://repo1.maven.org/maven2</url>
                 </repository>
                 <repository>
-                    <id>github</id>
-                    <url>https://maven.pkg.github.com/Reformed-Studios/ReformedCoreAPI</url>
+                    <id>reformed-repo</id>
+                    <url>https://repo.reformedstudios.eu/</url>
                     <snapshots>
                         <enabled>true</enabled>
                     </snapshots>
@@ -28,9 +28,9 @@
 
     <servers>
         <server>
-            <id>github</id>
-            <username>Reformed-Studios</username>
-            <password>${env.GITHUB_TOKEN}</password>
+            <id>reformed-repo</id>
+            <username>github</username>
+            <password>${env.MAVEN_REPO_TOKEN}</password>
         </server>
     </servers>
 </settings>
