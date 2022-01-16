@@ -10,6 +10,10 @@ import java.util.List;
 public class ReformedModule {
 	private final List<Module> modules;
 
+	String moduleName;
+	JavaPlugin mainClass;
+
+
 	public List<Module> getModules() {
 		return modules;
 	}
@@ -21,9 +25,6 @@ public class ReformedModule {
 	public JavaPlugin getMainClass() {
 		return mainClass;
 	}
-
-	String moduleName;
-	JavaPlugin mainClass;
 
 	ReformedModule(@NotNull String moduleName, @NotNull List<Module> modules, @NotNull JavaPlugin mainClass) {
 		this.moduleName = moduleName;
