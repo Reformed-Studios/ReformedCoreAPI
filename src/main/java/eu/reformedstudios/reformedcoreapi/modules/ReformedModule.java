@@ -34,7 +34,7 @@ public class ReformedModule {
 		if(registerable != null) {
 			registerable.addModules(List.of(this));
 		} else {
-			throw new RuntimeException("Something went wrong trying to register modules.");
+			throw new NullPointerException("Something went wrong trying to register modules.");
 		}
 	}
 

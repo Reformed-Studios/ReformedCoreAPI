@@ -3,7 +3,6 @@ package eu.reformedstudios.reformedcoreapi.modules;
 import com.google.inject.Module;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.security.InvalidAlgorithmParameterException;
 import java.util.ArrayList;
 import java.util.List;
 
