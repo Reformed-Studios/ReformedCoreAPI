@@ -6,6 +6,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.Objects;
 
 public class ReformedModule {
 	private final List<Module> modules;
@@ -32,11 +33,7 @@ public class ReformedModule {
 		this.mainClass = mainClass;
 
 		IRegisterable registerable = (IRegisterable) Bukkit.getPluginManager().getPlugin("ReformedCore");
-		if(registerable != null) {
-			registerable.addModules(List.of(this));
-		} else {
-			throw new NullPointerException("Something went wrong trying to register modules.");
-		}
+		Objects.requireNonNull(registerable, "Something went wrong trying to register modules.").addModules(List.of(this));
 	}
 
 
