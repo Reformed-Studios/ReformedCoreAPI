@@ -13,7 +13,11 @@ public class ReformedModule {
 
 	String moduleName;
 	JavaPlugin mainClass;
+	List<Class<?>> entities;
 
+	public List<Class<?>> getEntities() {
+		return entities;
+	}
 
 	public List<Module> getModules() {
 		return modules;
@@ -27,10 +31,11 @@ public class ReformedModule {
 		return mainClass;
 	}
 
-	ReformedModule(@NotNull String moduleName, @NotNull List<Module> modules, @NotNull JavaPlugin mainClass) {
+	ReformedModule(@NotNull String moduleName, @NotNull List<Module> modules, @NotNull JavaPlugin mainClass, List<Class<?>> entities) {
 		this.moduleName = moduleName;
 		this.modules = modules;
 		this.mainClass = mainClass;
+		this.entities = entities;
 
 		IRegisterable registerable = (IRegisterable) Bukkit.getPluginManager().getPlugin("ReformedCore");
 		Objects.requireNonNull(registerable, "Something went wrong trying to register modules.").addModules(List.of(this));
