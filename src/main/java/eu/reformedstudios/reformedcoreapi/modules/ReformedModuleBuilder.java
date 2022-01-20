@@ -10,6 +10,7 @@ public class ReformedModuleBuilder {
 
 	String name = null;
 	List<Module> modules = new ArrayList<>();
+	List<Class<?>> entities = new ArrayList<>();
 	JavaPlugin mainClass = null;
 
 	protected ReformedModuleBuilder() {
@@ -34,12 +35,17 @@ public class ReformedModuleBuilder {
 		return this;
 	}
 
+	public ReformedModuleBuilder withEntity(Class<?> entity) {
+		this.entities.add(entity);
+		return this;
+	}
+
 	public ReformedModule build() {
 		if(name == null) {
 			throw new IllegalArgumentException("You must provide a module name.");
 		} if(mainClass == null) {
 			throw new IllegalArgumentException("You must provide a main class.");
 		}
-		return new ReformedModule(name, modules, mainClass);
+		return new ReformedModule(name, modules, mainClass, entities);
 	}
 }
