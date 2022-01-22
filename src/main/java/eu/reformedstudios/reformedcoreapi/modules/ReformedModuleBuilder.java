@@ -4,6 +4,7 @@ import com.google.inject.Module;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ReformedModuleBuilder {
@@ -37,6 +38,11 @@ public class ReformedModuleBuilder {
 
 	public ReformedModuleBuilder withEntity(Class<?> entity) {
 		this.entities.add(entity);
+		return this;
+	}
+
+	public ReformedModuleBuilder withEntities(Class<?> ... entities) {
+		this.entities.addAll(Arrays.asList(entities));
 		return this;
 	}
 
