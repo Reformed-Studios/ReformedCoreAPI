@@ -1,6 +1,0 @@
-updates:
-  - package-ecosystem: maven
-    directory: /
-    schedule:
-      interval: daily
-version: 2
