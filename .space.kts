@@ -4,7 +4,7 @@
 * For more info, see https://www.jetbrains.com/help/space/automation.html
 */
 
-job("Hello World!") {
+job("Build and publish to maven.") {
     container(displayName = "Run publish script", image = "maven:3-openjdk-17-slim") {
         env["REFORMED_TOKEN"] = Secrets("repo_key")
         
@@ -14,7 +14,8 @@ job("Hello World!") {
             mvn clean install
             echo Publish artifacts...
             mvn versions:set -DnewVersion=1.0.${'$'}JB_SPACE_EXECUTION_NUMBER
-            mvn deploy
+            mvn deploy -s settings.xml \
+            	-DreformedToken=${'$'}REFORMED_TOKEN
             """
         }
     	
