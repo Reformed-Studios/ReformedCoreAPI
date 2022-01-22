@@ -30,7 +30,7 @@
         <server>
             <id>reformed-repo</id>
             <username>github</username>
-            <password>${env.REFORMED_TOKEN}</password>
+            <password>${reformedToken}</password>
         </server>
     </servers>
 </settings>
