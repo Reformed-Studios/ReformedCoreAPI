@@ -32,6 +32,7 @@ public class ReformedModuleBuilder {
 	/**
 	 * Sets the name of the ReformedModule.
 	 * @param name The name you want to set.
+	 * @return This class for chaining purposes.
 	 */
 	public ReformedModuleBuilder withName(String name) {
 		this.name = name;
@@ -41,6 +42,7 @@ public class ReformedModuleBuilder {
 	/**
 	 * Sets the main class of your module.
 	 * @param plugin The main class of your module.
+	 * @return This class for chaining purposes.
 	 */
 	public ReformedModuleBuilder withMainClass(JavaPlugin plugin) {
 		this.mainClass = plugin;
@@ -50,6 +52,7 @@ public class ReformedModuleBuilder {
 	/**
 	 * Registers a Guice Module for your module.
 	 * @param module The GModule you want to register.
+	 * @return This class for chaining purposes.
 	 */
 	public ReformedModuleBuilder withModule(Module module) {
 		this.modules.add(module);
@@ -59,6 +62,7 @@ public class ReformedModuleBuilder {
 	/**
 	 * Registers a Morphia Entity.
 	 * @param entity The Entity you want to register.
+	 * @return This class for chaining purposes.
 	 */
 	public ReformedModuleBuilder withEntity(Class<?> entity) {
 		this.entities.add(entity);
@@ -68,6 +72,7 @@ public class ReformedModuleBuilder {
 	/**
 	 * Registers multiple Morphia Entities
 	 * @param entities The Entities you want to register.
+	 * @return This class for chaining purposes.
 	 */
 	public ReformedModuleBuilder withEntities(Class<?> ... entities) {
 		this.entities.addAll(Arrays.asList(entities));

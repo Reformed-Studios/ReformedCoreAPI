@@ -5,15 +5,9 @@ import dev.morphia.query.Query;
 
 /**
  * Interface for interacting with the database.
- *
  * <p>
- * Implementation is provided at runtime. Simply inject it as follows:
- * <code>
- * @Inject
- * private IDatabase database;
- * </code>
+ * Implementation is provided at runtime. Simply inject it using the @Inject annotation on a class field.
  * This will provide an instance at runtime for you to access the database.
- * </p>
  */
 public interface IDatabase {
 
