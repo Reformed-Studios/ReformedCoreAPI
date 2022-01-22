@@ -8,6 +8,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Module used to register stuff in the API.
+ */
 public class ReformedModule {
 	private final List<Module> modules;
 
