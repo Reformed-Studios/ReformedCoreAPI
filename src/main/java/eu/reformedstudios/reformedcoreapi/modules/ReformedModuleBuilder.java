@@ -1,6 +1,7 @@
 package eu.reformedstudios.reformedcoreapi.modules;
 
 import com.google.inject.Module;
+import eu.reformedstudios.reformedcoreapi.events.IEventListener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
@@ -16,7 +17,8 @@ public class ReformedModuleBuilder {
 	String name = null;
 	List<Module> modules = new ArrayList<>();
 	List<Class<?>> entities = new ArrayList<>();
-	JavaPlugin mainClass = null;
+	Object mainClass = null;
+	List<IEventListener> listeners = new ArrayList<>();
 
 	protected ReformedModuleBuilder() {
 	}
@@ -44,7 +46,7 @@ public class ReformedModuleBuilder {
 	 * @param plugin The main class of your module.
 	 * @return This class for chaining purposes.
 	 */
-	public ReformedModuleBuilder withMainClass(JavaPlugin plugin) {
+	public ReformedModuleBuilder withMainClass(Object plugin) {
 		this.mainClass = plugin;
 		return this;
 	}
@@ -80,6 +82,26 @@ public class ReformedModuleBuilder {
 	}
 
 	/**
+	 * Registers an event listener.
+	 * @param listener the listener you want to register.
+	 * @return This class for chaining purposes.
+	 */
+	public ReformedModuleBuilder withListener(IEventListener listener) {
+		this.listeners.add(listener);
+		return this;
+	}
+
+	/**
+	 * Registers one or more event listeners.
+	 * @param listeners the listener(s) you want to register.
+	 * @return This class for chaining purposes.
+	 */
+	public ReformedModuleBuilder withListeners(IEventListener ... listeners) {
+		this.listeners.addAll(Arrays.asList(listeners));
+		return this;
+	}
+
+	/**
 	 * Build method that will return you an instance of ReformedModule, and confirms all registering.
 	 * @return You instance of ReformedModule.
 	 */
@@ -89,6 +111,6 @@ public class ReformedModuleBuilder {
 		} if(mainClass == null) {
 			throw new IllegalArgumentException("You must provide a main class.");
 		}
-		return new ReformedModule(name, modules, mainClass, entities);
+		return new ReformedModule(name, modules, mainClass, entities, listeners);
 	}
 }

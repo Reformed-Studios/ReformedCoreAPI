@@ -1,6 +1,7 @@
 package eu.reformedstudios.reformedcoreapi.modules;
 
 import com.google.inject.Module;
+import eu.reformedstudios.reformedcoreapi.events.IEventListener;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
@@ -15,12 +16,9 @@ public class ReformedModule {
 	private final List<Module> modules;
 
 	String moduleName;
-	JavaPlugin mainClass;
+	Object mainClass;
 	List<Class<?>> entities;
-
-	public List<Class<?>> getEntities() {
-		return entities;
-	}
+	private List<IEventListener> listeners;
 
 	public List<Module> getModules() {
 		return modules;
@@ -30,18 +28,41 @@ public class ReformedModule {
 		return moduleName;
 	}
 
-	public JavaPlugin getMainClass() {
+	public Object getMainClass() {
 		return mainClass;
 	}
 
-	ReformedModule(@NotNull String moduleName, @NotNull List<Module> modules, @NotNull JavaPlugin mainClass, List<Class<?>> entities) {
+	public List<Class<?>> getEntities() {
+		return entities;
+	}
+
+	public List<IEventListener> getListeners() {
+		return listeners;
+	}
+
+	ReformedModule(
+					@NotNull String moduleName,
+					@NotNull List<Module> modules,
+					@NotNull Object mainClass,
+					List<Class<?>> entities,
+					List<IEventListener> eventListeners
+					) {
 		this.moduleName = moduleName;
 		this.modules = modules;
 		this.mainClass = mainClass;
 		this.entities = entities;
+		this.listeners = eventListeners;
 
-		IRegisterable registerable = (IRegisterable) Bukkit.getPluginManager().getPlugin("ReformedCore");
-		Objects.requireNonNull(registerable, "Something went wrong trying to register modules.").addModules(List.of(this));
+		IRegistering registring = ((IRegistering) Bukkit.getPluginManager().getPlugin("ReformedCore"));
+
+		if(registring == null) {
+			System.out.println("Something went wrong registering a core mechanic.");
+			return;
+		}
+
+		IRegisterable registrable = registring.handleRegistering();
+		registrable.addModules(List.of(this));
+		this.listeners.forEach(registrable::registerListener);
 	}
 
 
