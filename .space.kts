@@ -13,7 +13,6 @@ job("Build and publish to maven.") {
             echo Build and run tests...
             mvn clean install
             echo Publish artifacts...
-            mvn versions:set -DnewVersion=1.0.${'$'}JB_SPACE_EXECUTION_NUMBER
             mvn deploy -s settings.xml \
             	-DreformedToken=${'$'}REFORMED_TOKEN
             """
