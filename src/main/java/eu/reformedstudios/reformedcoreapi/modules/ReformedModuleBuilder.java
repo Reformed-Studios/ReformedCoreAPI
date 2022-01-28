@@ -17,7 +17,7 @@ public class ReformedModuleBuilder {
 	String name = null;
 	List<Module> modules = new ArrayList<>();
 	List<Class<?>> entities = new ArrayList<>();
-	Object mainClass = null;
+	JavaPlugin mainClass = null;
 	List<IEventListener> listeners = new ArrayList<>();
 
 	protected ReformedModuleBuilder() {
@@ -46,7 +46,7 @@ public class ReformedModuleBuilder {
 	 * @param plugin The main class of your module.
 	 * @return This class for chaining purposes.
 	 */
-	public ReformedModuleBuilder withMainClass(Object plugin) {
+	public ReformedModuleBuilder withMainClass(JavaPlugin plugin) {
 		this.mainClass = plugin;
 		return this;
 	}
