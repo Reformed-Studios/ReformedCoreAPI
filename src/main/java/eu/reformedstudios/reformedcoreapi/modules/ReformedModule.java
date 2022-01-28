@@ -1,6 +1,7 @@
 package eu.reformedstudios.reformedcoreapi.modules;
 
 import com.google.inject.Module;
+import eu.reformedstudios.reformedcoreapi.commands.ICommandManager;
 import eu.reformedstudios.reformedcoreapi.events.IEventListener;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -16,9 +17,10 @@ public class ReformedModule {
 	private final List<Module> modules;
 
 	String moduleName;
-	Object mainClass;
+	JavaPlugin mainClass;
 	List<Class<?>> entities;
 	private List<IEventListener> listeners;
+	private ICommandManager commandManager;
 
 	public List<Module> getModules() {
 		return modules;
@@ -28,7 +30,7 @@ public class ReformedModule {
 		return moduleName;
 	}
 
-	public Object getMainClass() {
+	public JavaPlugin getMainClass() {
 		return mainClass;
 	}
 
@@ -40,10 +42,14 @@ public class ReformedModule {
 		return listeners;
 	}
 
+	public ICommandManager getCommandManager() {
+		return this.commandManager;
+	}
+
 	ReformedModule(
 					@NotNull String moduleName,
 					@NotNull List<Module> modules,
-					@NotNull Object mainClass,
+					@NotNull JavaPlugin mainClass,
 					List<Class<?>> entities,
 					List<IEventListener> eventListeners
 					) {
@@ -61,8 +67,12 @@ public class ReformedModule {
 		}
 
 		IRegisterable registrable = registring.handleRegistering();
+		
 		registrable.addModules(List.of(this));
 		this.listeners.forEach(registrable::registerListener);
+
+		this.commandManager = registrable.getCommandManager(this);
+
 	}
 
 
