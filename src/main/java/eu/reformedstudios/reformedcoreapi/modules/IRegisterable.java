@@ -8,12 +8,13 @@ import java.util.List;
 
 public interface IRegisterable {
 
-	void addModules(List<ReformedModule> modules);
+    void addModules(List<ReformedModule> modules);
 
-	void runEvent(EventContext ctx);
+    void runEvent(EventContext ctx);
 
-	ICommandManager getCommandManager(ReformedModule module);
+    ICommandManager getCommandManager(ReformedModule module);
 
-	void registerListener(IEventListener listener);
+    void registerListener(IEventListener listener);
+
 
 }

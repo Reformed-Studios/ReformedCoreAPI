@@ -2,78 +2,83 @@ package eu.reformedstudios.reformedcoreapi.modules;
 
 import com.google.inject.Module;
 import eu.reformedstudios.reformedcoreapi.commands.ICommandManager;
+import eu.reformedstudios.reformedcoreapi.config.AbstractConfiguration;
 import eu.reformedstudios.reformedcoreapi.events.IEventListener;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
+import java.util.Map;
 
 /**
  * Module used to register stuff in the API.
  */
 public class ReformedModule {
-	private final List<Module> modules;
+    private final List<Module> modules;
+    private final List<IEventListener> listeners;
+    private final Map<Class<?>, AbstractConfiguration<?>> configurations;
+    String moduleName;
+    JavaPlugin mainClass;
+    List<Class<?>> entities;
+    private IRegisterable registrable;
+    private ICommandManager commandManager;
 
-	String moduleName;
-	JavaPlugin mainClass;
-	List<Class<?>> entities;
-	private List<IEventListener> listeners;
-	private ICommandManager commandManager;
+    ReformedModule(
+            @NotNull String moduleName,
+            @NotNull List<Module> modules,
+            @NotNull JavaPlugin mainClass,
+            List<Class<?>> entities,
+            List<IEventListener> eventListeners
+    ) {
+        this.configurations = new HashMap<>();
+        this.moduleName = moduleName;
+        this.modules = modules;
+        this.mainClass = mainClass;
+        this.entities = entities;
+        this.listeners = eventListeners;
 
-	public List<Module> getModules() {
-		return modules;
-	}
+        IRegistering registering = ((IRegistering) Bukkit.getPluginManager().getPlugin("ReformedCore"));
 
-	public String getModuleName() {
-		return moduleName;
-	}
+        if (registering == null) {
+            System.out.println("Something went wrong registering a core mechanic.");
+            return;
+        }
 
-	public JavaPlugin getMainClass() {
-		return mainClass;
-	}
+        this.registrable = registering.handleRegistering();
 
-	public List<Class<?>> getEntities() {
-		return entities;
-	}
+        registrable.addModules(List.of(this));
+        this.listeners.forEach(registrable::registerListener);
 
-	public List<IEventListener> getListeners() {
-		return listeners;
-	}
+        this.commandManager = registrable.getCommandManager(this);
 
-	public ICommandManager getCommandManager() {
-		return this.commandManager;
-	}
 
-	ReformedModule(
-					@NotNull String moduleName,
-					@NotNull List<Module> modules,
-					@NotNull JavaPlugin mainClass,
-					List<Class<?>> entities,
-					List<IEventListener> eventListeners
-					) {
-		this.moduleName = moduleName;
-		this.modules = modules;
-		this.mainClass = mainClass;
-		this.entities = entities;
-		this.listeners = eventListeners;
+    }
 
-		IRegistering registring = ((IRegistering) Bukkit.getPluginManager().getPlugin("ReformedCore"));
+    public List<Module> getModules() {
+        return modules;
+    }
 
-		if(registring == null) {
-			System.out.println("Something went wrong registering a core mechanic.");
-			return;
-		}
+    public String getModuleName() {
+        return moduleName;
+    }
 
-		IRegisterable registrable = registring.handleRegistering();
-		
-		registrable.addModules(List.of(this));
-		this.listeners.forEach(registrable::registerListener);
+    public JavaPlugin getMainClass() {
+        return mainClass;
+    }
 
-		this.commandManager = registrable.getCommandManager(this);
+    public List<Class<?>> getEntities() {
+        return entities;
+    }
 
-	}
+    public List<IEventListener> getListeners() {
+        return listeners;
+    }
+
+    public ICommandManager getCommandManager() {
+        return this.commandManager;
+    }
 
 
 }
