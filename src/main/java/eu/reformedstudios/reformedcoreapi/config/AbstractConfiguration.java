@@ -10,4 +10,8 @@ public abstract class AbstractConfiguration<T> {
 
     public abstract T load();
 
+    public void saveDefaults() {
+        this.save(this.load());
+    }
+
 }
