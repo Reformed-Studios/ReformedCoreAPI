@@ -15,7 +15,7 @@ public class CommandBuilder {
 	private List<String> aliases = Collections.emptyList();
 
 	/**
-	 * Sets the command name (the primary command, i.e. /<name>)
+	 * Sets the command name (the primary command, i.e. /name would have the name "name".)
 	 *
 	 * @param name The name you want to pass.
 	 * @return The builder for chaining purposes
