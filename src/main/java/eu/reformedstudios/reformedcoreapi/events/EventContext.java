@@ -65,6 +65,11 @@ public class EventContext {
         return this.name;
     }
 
+    /**
+     * Returns the raw json.
+     *
+     * @return The raw json.
+     */
     public String getJson() {
         return this.json;
     }

@@ -11,18 +11,21 @@ import dev.morphia.query.Query;
  */
 public interface IDatabase {
 
-	/**
-	 * Creates a query for the database.
-	 * @param tClass The Entity you want to query.
-	 * @return Your Morphia Query.
-	 */
-	<T> Query<T> createQuery(Class<T> tClass);
+    /**
+     * Creates a query for the database.
+     *
+     * @param tClass The Entity you want to query.
+     * @param <T>    The type of the entity.
+     * @return Your Morphia Query.
+     */
+    <T> Query<T> createQuery(Class<T> tClass);
 
-	/**
-	 * Saves an object in the database.
-	 * @param o The object you want to store.
-	 */
-	void save(Object o);
+    /**
+     * Saves an object in the database.
+     *
+     * @param o The object you want to store.
+     */
+    void save(Object o);
 
 
 }

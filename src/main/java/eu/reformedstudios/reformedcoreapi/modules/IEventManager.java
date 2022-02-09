@@ -9,6 +9,8 @@ public interface IEventManager {
 
     /**
      * Method to call when event occurs.
+     *
+     * @param ctx Eventcontext to pass.
      */
     void execute(EventContext ctx);
 

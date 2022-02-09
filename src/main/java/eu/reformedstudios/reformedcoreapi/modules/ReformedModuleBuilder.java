@@ -21,6 +21,9 @@ public class ReformedModuleBuilder {
     List<IEventListener> listeners = new ArrayList<>();
     Map<Class<?>, Path> configs = new HashMap<>();
 
+    /**
+     * Protected zero-arg-constructor.
+     */
     protected ReformedModuleBuilder() {
     }
 
