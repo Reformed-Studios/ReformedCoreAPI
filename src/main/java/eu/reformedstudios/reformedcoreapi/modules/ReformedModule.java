@@ -25,6 +25,15 @@ public class ReformedModule {
     private IRegisterable registrable;
     private ICommandManager commandManager;
 
+    /**
+     * Package-private constructor to construct the ReformedModule.
+     *
+     * @param moduleName     The name of your module.
+     * @param modules        The Guice modules you want to register.
+     * @param mainClass      The main class of your module.
+     * @param entities       The database entities you want to use.
+     * @param eventListeners The event listeners you want to register.
+     */
     ReformedModule(
             @NotNull String moduleName,
             @NotNull List<Module> modules,
@@ -56,26 +65,56 @@ public class ReformedModule {
 
     }
 
+    /**
+     * Getter for the Guice modules.
+     *
+     * @return The Guice modules.
+     */
     public List<Module> getModules() {
         return modules;
     }
 
+    /**
+     * Getter for the module name.
+     *
+     * @return The module name.
+     */
     public String getModuleName() {
         return moduleName;
     }
 
+    /**
+     * Getter for the main class.
+     *
+     * @return The main class.
+     */
     public JavaPlugin getMainClass() {
         return mainClass;
     }
 
+    /**
+     * Getter for the database entities.
+     *
+     * @return The database entities.
+     */
     public List<Class<?>> getEntities() {
         return entities;
     }
 
+    /**
+     * Getter for the {@link eu.reformedstudios.reformedcoreapi.events.IEventListener}s.
+     *
+     * @return The List of {@link eu.reformedstudios.reformedcoreapi.events.IEventListener}.
+     */
     public List<IEventListener> getListeners() {
         return listeners;
     }
 
+    /**
+     * Getter for the {@link eu.reformedstudios.reformedcoreapi.commands.ICommandManager}.
+     *
+     * @return The {@link eu.reformedstudios.reformedcoreapi.commands.ICommandManager}.
+     */
     public ICommandManager getCommandManager() {
         return this.commandManager;
     }

@@ -6,7 +6,12 @@ package eu.reformedstudios.reformedcoreapi.modules;
  */
 public interface IRegistering {
 
-	IRegisterable handleRegistering();
+    /**
+     * Gets the {@link eu.reformedstudios.reformedcoreapi.modules.IRegistering} instance from RC.
+     *
+     * @return The {@link eu.reformedstudios.reformedcoreapi.modules.IRegistering} instance.
+     */
+    IRegisterable handleRegistering();
 
 
 }

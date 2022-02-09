@@ -9,10 +9,30 @@ import org.bukkit.permissions.Permissible;
  */
 public interface ICommandManager {
 
-    void registerCommand(CommandListener l);
+    /**
+     * Method used to register a command.
+     *
+     * @param listener Listener to register.
+     */
+    void registerCommand(CommandListener listener);
 
-    Component getHelpMenu(Permissible p);
+    /**
+     * Method to get the help menu for all commands.
+     *
+     * @param permissible Permissible interface (player). This makes RC check wether the player has the permission to
+     *                    access a command, and doesn't show it to the player if they don't.
+     * @return The help menu component.
+     */
+    Component getHelpMenu(Permissible permissible);
 
-    Component getHelpMenu(Permissible p, String commandName);
+    /**
+     * Method to get the help menu for a command query.
+     *
+     * @param permissible Permissible interface (player). This makes RC check wether the player has the permission to
+     *                    access a command, and doesn't show it to the player if they don't.
+     * @param commandName Command query.
+     * @return The help menu component.
+     */
+    Component getHelpMenu(Permissible permissible, String commandName);
 
 }

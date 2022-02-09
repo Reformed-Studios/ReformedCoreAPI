@@ -70,19 +70,38 @@ public class EventContext {
     }
 
 
+    /**
+     * Internal class for parsing the event JSON.
+     */
     private class EventParser {
         String redis_id;
         Map<String, Object> event;
 
+        /**
+         * Constructs the event parser (using the event context)
+         *
+         * @param redis_id The string id for the event.
+         * @param event    The event data.
+         */
         public EventParser(String redis_id, Map<String, Object> event) {
             this.redis_id = redis_id;
             this.event = event;
         }
 
+        /**
+         * Getter for the event id.
+         *
+         * @return The event id.
+         */
         public String getRedis_id() {
             return redis_id;
         }
 
+        /**
+         * Getter for the event data.
+         *
+         * @return The event data.
+         */
         public Map<String, Object> getEvent() {
             return event;
         }
