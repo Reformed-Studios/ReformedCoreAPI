@@ -1,7 +1,6 @@
 package eu.reformedstudios.reformedcoreapi.commands;
 
 
-import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 /**
@@ -38,7 +37,7 @@ public abstract class CommandListener {
      * @param args   Array of command arguments.
      * @return True: successful command; nothing happens. False: prints the command usage because Bukkit.
      */
-    public boolean exec(CommandSender sender, Command cmd, String label, String[] args) {
+    public boolean exec(CommandSender sender, org.bukkit.command.Command cmd, String label, String[] args) {
         return false;
     }
 }
