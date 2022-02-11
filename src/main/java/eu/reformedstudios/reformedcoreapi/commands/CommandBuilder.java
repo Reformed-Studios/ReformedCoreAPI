@@ -39,7 +39,7 @@ public class CommandBuilder {
 	/**
 	 * Sets the command permissions, automatically gets checked on execute. If your command uses multiple permissions,
 	 * i.e. "command.self", "command.other", add both in here and check individually depending on what the permission
-	 * allows them to do. You do <stong>NOT</stong> need to send an error message.
+	 * allows them to do. You do <strong>NOT</strong> need to send an error message.
 	 *
 	 * @param permissions The permissions you want to pass
 	 * @return The builder for chaining purposes
