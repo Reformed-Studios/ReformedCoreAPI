@@ -6,3 +6,6 @@
 # ReformedCoreAPI
 
 API to interact with the ReformedCore plugin.
+
+[Javadoc](https://repo.reformedstudios.eu/javadoc/releases/eu/reformedstudios/reformed-core-api/latest)
+[Written Documentation](https://info.reformedstudios.eu/)
